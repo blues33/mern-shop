@@ -1,0 +1,58 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["plugin:import/recommended", "plugin:react/recommended"],
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React"
+    }
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "no-new-object": 1,
+    "object-shorthand": 1,
+    "no-array-constructor": 1,
+    "prefer-destructuring": 1,
+    "no-new-func": 1,
+    "no-duplicate-imports": 1,
+    "import/prefer-default-export": 1,
+    "import/first": 1,
+    "no-restricted-syntax": 1,
+    "dot-notation": 1,
+    "no-console": "off",
+    "no-process-env": "off",
+    "prefer-const": 1,
+    "nonblock-statement-body-position": 1,
+    "brace-style": 1,
+    "no-else-return": 2,
+    "spaced-comment": 1,
+
+    "array-bracket-spacing": 1,
+    "comma-style": 1,
+    "semi": 1,
+    "import/no-unresolved": 0,
+    "valid-jsdoc": 2,
+    "react/jsx-uses-react": 1,
+    "react/no-deprecated": 1,
+    "react/display-name": 1,
+    "react/no-did-update-set-state": 1,
+    "react/no-did-mount-set-state": 1,
+    "react/no-multi-comp": 1,
+    "react/no-redundant-should-component-update": 1,
+    "react/no-typos": 1,
+    "react/no-unescaped-entities": 1,
+    "react/prefer-stateless-function": 1,
+    "react/react-in-jsx-scope": 1,
+    "react/jsx-wrap-multilines": 2,
+    "react/no-string-refs": 0
+  },
+  "plugins": ["import", "react"],
+  "env": { "amd": true }
+}
