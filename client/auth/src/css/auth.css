@@ -1,12 +1,28 @@
+/**
+font-family: 'Marck Script', cursive;
+*/
+
+@font-face {
+  font-family: "open-sans";
+  src: url("../../../../resources//fonts/OpenSans-Regular.ttf")
+      format("truetype"),
+    url("../../../../resources//fonts/Roboto-Regular.ttf") format("truetype");
+}
+
 .wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 600px;
+
+  --lavender-gray: #b8bbd5;
+  --spanish-gray: #8aa399;
+  --stormcloud: #586862;
 }
 
 .wrapper .form-wrapper {
-  width: 300px;
+  width: 350px;
+  padding-bottom: 30px;
   background: white;
   -webkit-box-shadow: 0px 8px 22px -1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 8px 22px -1px rgba(0, 0, 0, 0.75);
@@ -22,34 +38,61 @@
 }
 
 .form-wrapper label {
-  font-size: 0.8em;
-  color: black;
+  width: 70%;
+  font-size: 1em;
+  color: var(--stormcloud);
   display: flex;
   flex-direction: column;
   margin: 15px 0 15px 0;
+  font-weight: 500;
+  font-family: "Open Sans", sans-serif;
 }
 
 .form-wrapper input {
-  padding: 10px 10px;
-  border-radius: 5px;
+  width: 100%;
+  padding: 10px 0 10px 10px;
   outline: none;
   margin-top: 5%;
-  border: 1px solid #274156;
+  border: 1px solid var(--lavender-gray);
+  color: ;
 }
 
 .form-wrapper input::placeholder {
   font-size: 1.2em;
   font-weight: lighter;
-  color: var(--x11-gray);
+  color: var(--spanish-gray);
 }
 
 .form-wrapper h1 {
   padding: 20px 0 10px 0;
   text-align: center;
+  font-family: "Roboto", sans-serif;
 }
 
 .form-wrapper hr {
   max-width: 100%;
+}
+
+.form-wrapper button {
+  width: 70%;
+  padding: 10px 0 10px 0;
+  background: #bfd9f2;
+  border: none;
+  margin: 20px 0 5px 0;
+}
+
+.form-wrapper button:hover {
+  background: white;
+  border: 2px solid var(--spanish-gray);
+}
+
+.form-wrapper button:focus {
+  outline-color: #dbf4a7;
+}
+
+.form-wrapper small {
+  color: var(--stormcloud);
+  font-size: 16px;
 }
 
 /* with shadow
