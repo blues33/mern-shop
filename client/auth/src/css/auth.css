@@ -107,7 +107,13 @@ font-family: 'Marck Script', cursive;
 
 .auth-form .firstName,
 .auth-form .lastName {
-  width: 38%;
+  width: 39%;
+}
+
+.auth-form .error {
+  color: #dd8b71;
+  letter-spacing: 0.5px;
+  text-align: center;
 }
 
 /* with shadow

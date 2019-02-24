@@ -5,6 +5,7 @@ import Input from "../../Components/Input";
 
 const SingUp = () => {
   document.bgColor = "#BFD9F2"; /* pale aqua */
+  document.title = "Shop | Регистрация";
 
   const handleSubmit = e => {
     e.preventDefault();
