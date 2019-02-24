@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import Input from "../../Components/Input";
 
 const SingIn = () => {
@@ -11,23 +11,23 @@ const SingIn = () => {
 
   return (
     <div className="wrapper">
-      <div className="form-wrapper">
+      <div className="auth-form">
         <h1>Вход</h1>
         <hr />
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">
             Почта
-            <Input name="email" placeholder="почта" />
+            <Input name="email" />
           </label>
           <label htmlFor="password">
             Пароль
-            <Input name="password" placeholder="пароль" />
+            <Input name="password" />
           </label>
 
           <button type="submit">
             <p>Войти</p>
           </button>
-          <small>Не зарегистрированы?</small>
+          <Link to="/singup">Не зарегистрированы?</Link>
         </form>
       </div>
     </div>
