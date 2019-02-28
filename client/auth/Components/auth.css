@@ -4,9 +4,8 @@ font-family: 'Marck Script', cursive;
 
 @font-face {
   font-family: "open-sans";
-  src: url("../../../../resources//fonts/OpenSans-Regular.ttf")
-      format("truetype"),
-    url("../../../../resources//fonts/Roboto-Regular.ttf") format("truetype");
+  src: url("../../../resources/fonts/OpenSans-Regular.ttf") format("truetype"),
+    url("../../../resources//fonts/Roboto-Regular.ttf") format("truetype");
 }
 
 .wrapper {

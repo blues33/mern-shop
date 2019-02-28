@@ -9,17 +9,6 @@ router.get("/", (request, response) => {
   response.send("Users");
 });
 
-/*
-router.get("/", auth, isAdmin, (request, response) => {
-  User.find((err, user) => {
-    if (err) {
-      console.log(chalk.red(err));
-      return response.sendStatus(400, { error: err });
-    }
-    return response.send(user);
-  }).select("-__v -password");
-});
-
 router.post("/", (request, response) => {
   const date = Date();
   const { first_name, last_name, phone_number, email, password } = request.body;
@@ -43,6 +32,18 @@ router.post("/", (request, response) => {
       return response.status(400).send({ error: err });
     });
 });
+
+/*
+router.get("/", auth, isAdmin, (request, response) => {
+  User.find((err, user) => {
+    if (err) {
+      console.log(chalk.red(err));
+      return response.sendStatus(400, { error: err });
+    }
+    return response.send(user);
+  }).select("-__v -password");
+});
+
 
 router.put("/:id", auth, isAdmin, (request, response) => {
   const { first_name, last_name, phone_number, email, password } = request.body;

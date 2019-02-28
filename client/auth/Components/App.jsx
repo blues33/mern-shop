@@ -5,7 +5,7 @@ import { Switch, Route, Link } from "react-router-dom";
 import SingIn from "./SingIn";
 import SingUp from "./SingUp";
 
-import "../src/css/auth.css";
+import "./auth.css";
 
 const App = () => {
   return (
