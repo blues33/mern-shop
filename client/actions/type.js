@@ -1,0 +1,2 @@
+export const REGISTER_USER = "REGISTER_USER";
+export const REQUEST_SUCCESS = "REQUEST_SUCCESS";

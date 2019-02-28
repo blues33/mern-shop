@@ -1,9 +1,10 @@
+import "regenerator-runtime/runtime";
 import React from "react";
 import PropTypes from "prop-types";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import "../css/main.css";
+import "../scss/main.scss";
 
 import store from "../store";
 

@@ -36,10 +36,7 @@ module.exports = {
   },
   resolve: {
     extensions: ["*", ".js", ".jsx"]
-  } /*
-  optimization: {
-    minimizer: [new UglifyJsPlugin({ test: /\.(jsx|js)$/, sourceMap: true })]
-  },*/,
+  },
   module: {
     rules: [
       {
@@ -48,7 +45,7 @@ module.exports = {
         use: ["babel-loader"]
       },
       {
-        test: /\.css$/,
+        test: /\.(css|scss)$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -56,7 +53,8 @@ module.exports = {
               publicPath: "../"
             }
           },
-          "css-loader"
+          "css-loader",
+          "sass-loader"
         ]
       },
       {

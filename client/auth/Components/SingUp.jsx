@@ -1,14 +1,18 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import { Link } from "react-router-dom";
 
 import Input from "../../Components/Input";
+import { registerUser } from "../../actions/authActions";
 
-const SingUp = () => {
+const SingUp = props => {
   document.bgColor = "#BFD9F2"; /* pale aqua */
   document.title = "Shop | Регистрация";
 
   const handleSubmit = e => {
     e.preventDefault();
+    props.dispatch(registerUser());
   };
   return (
     <div className="wrapper">
@@ -39,7 +43,7 @@ const SingUp = () => {
           </label>
 
           <button type="submit">
-            <p>Войти</p>
+            <p>Зарегистрироваться</p>
           </button>
           <Link to="/">Уже есть аккаунт?</Link>
         </form>
@@ -48,4 +52,6 @@ const SingUp = () => {
   );
 };
 
-export default SingUp;
+export default connect(state => {
+  return state;
+})(SingUp);

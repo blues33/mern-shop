@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import SingIn from "./SingIn";
 import SingUp from "./SingUp";
 
-import "./auth.css";
+import "./auth.scss";
 
 const App = () => {
   return (
