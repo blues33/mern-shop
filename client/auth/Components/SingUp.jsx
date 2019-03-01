@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import { Link } from "react-router-dom";
@@ -10,9 +10,34 @@ const SingUp = props => {
   document.bgColor = "#BFD9F2"; /* pale aqua */
   document.title = "Shop | Регистрация";
 
+  const [state, setState] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    password: ""
+  });
+
+  const handleOnChange = event => {
+    const { name, value } = event.target;
+    setState(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
-    props.dispatch(registerUser());
+
+    const newUser = {
+      first_name: state.firstName,
+      last_name: state.lastName,
+      email: state.email,
+      phone_number: state.phone_number,
+      password: state.password
+    };
+
+    props.registerUser(newUser);
   };
   return (
     <div className="wrapper">
@@ -22,24 +47,24 @@ const SingUp = props => {
         <form onSubmit={handleSubmit}>
           <label htmlFor="firstName" className="firstName">
             Имя
-            <Input name="firstName" />
+            <Input name="firstName" onChange={e => handleOnChange(e)} />
           </label>
 
           <label htmlFor="lastName" className="lastName">
             Фамилия
-            <Input name="lastName" />
+            <Input name="lastName" onChange={e => handleOnChange(e)} />
           </label>
           <label htmlFor="email">
             Почта
-            <Input name="email" />
+            <Input name="email" onChange={e => handleOnChange(e)} />
           </label>
           <label htmlFor="phone">
             Телефон
-            <Input name="phone" />
+            <Input name="phone_number" onChange={e => handleOnChange(e)} />
           </label>
           <label htmlFor="password">
             Пароль
-            <Input name="password" />
+            <Input name="password" onChange={e => handleOnChange(e)} />
           </label>
 
           <button type="submit">
@@ -52,8 +77,11 @@ const SingUp = props => {
   );
 };
 
-const maptStateToProps = state => ({});
+const maptStateToProps = state => ({
+  user: state.userReducer
+});
 
-export default connect(state => {
-  return state;
-})(SingUp);
+export default connect(
+  maptStateToProps,
+  { registerUser }
+)(SingUp);

@@ -8,6 +8,8 @@ const chalk = require("chalk");
 const history = require("connect-history-api-fallback");
 const session = require("express-session");
 const passport = require("passport");
+const cors = require("cors");
+const helmet = require("helmet");
 const MongoStore = require("connect-mongo")(session);
 const router = require("./routes");
 const { auth, isAdmin } = require("./middleware/authentication");
@@ -16,11 +18,12 @@ require("./config/db");
 
 const app = express();
 
-app.use("/", router);
-
 // middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use("/", router);
+app.use(helmet());
 if (process.env.NODE_ENV !== "test") {
   app.use(history());
   app.use(morgan("dev"));

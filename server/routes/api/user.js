@@ -10,6 +10,7 @@ router.get("/", (request, response) => {
 });
 
 router.post("/", (request, response) => {
+  console.log(request.body);
   const date = Date();
   const { first_name, last_name, phone_number, email, password } = request.body;
   const user = new User({
