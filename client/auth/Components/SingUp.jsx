@@ -52,6 +52,8 @@ const SingUp = props => {
   );
 };
 
+const maptStateToProps = state => ({});
+
 export default connect(state => {
   return state;
 })(SingUp);

@@ -8,18 +8,24 @@ font-family: 'Marck Script', cursive;
     url("../../../resources//fonts/Roboto-Regular.ttf") format("truetype");
 }
 
+$lavender-gray: #b8bbd5;
+$spanish-gray: #8aa399;
+$stormcloud: #586862;
+$pale-aqua: #bfd9f2;
+$dark-medium-gray: #a9aba9;
+$grizzly: #7e5920;
+
 .wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 600px;
+}
 
-  --lavender-gray: #b8bbd5;
-  --spanish-gray: #8aa399;
-  --stormcloud: #586862;
-  --pale-aqua: #bfd9f2;
-  --dark-medium-gray: #a9aba9;
-  --grizzly: #7e5920;
+@mixin box-shadow($property) {
+  -webkit-box-shadow: $property;
+  -moz-box-shadow: $property;
+  box-shadow: $property;
 }
 
 .auth-form {
@@ -27,9 +33,7 @@ font-family: 'Marck Script', cursive;
   background: white;
   flex-direction: column;
   display: flex;
-  -webkit-box-shadow: 0px 8px 22px -1px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 8px 22px -1px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 8px 22px -1px rgba(0, 0, 0, 0.75);
+  @include box-shadow(0px 8px 22px -1px rgba(0, 0, 0, 0.75));
   padding: 0 0 2% 0;
 
   form {
@@ -43,7 +47,7 @@ font-family: 'Marck Script', cursive;
     font-size: 1.1em;
     flex-direction: column;
     font-weight: 500;
-    color: var(--stormcloud);
+    color: $stormcloud;
     font-family: "Open Sans", sans-serif;
     display: flex;
     margin: 5% 0 0 0;
@@ -53,8 +57,8 @@ font-family: 'Marck Script', cursive;
     width: 100%;
     padding: 3% 0 3% 0;
     margin-top: 5%;
-    border: 1px solid var(--lavender-gray);
-    color: var(--spanish-gray);
+    border: 1px solid $lavender-gray;
+    color: $spanish-gray;
     background: whitesmoke;
     font-size: 0.9em;
   }
@@ -62,37 +66,37 @@ font-family: 'Marck Script', cursive;
   h1 {
     text-align: center;
     padding: 4% 0 4% 0;
-    color: var(--stormcloud);
+    color: $stormcloud;
   }
 
   button {
     width: 80%;
     margin: 7.5% 0 1% 0;
     padding: 2.5% 0 2.5% 0;
-    background: var(--pale-aqua);
-    border: 2px solid var(--pale-aqua);
-    color: var(--stormcloud);
+    background: $pale-aqua;
+    border: 2px solid $pale-aqua;
+    color: $stormcloud;
     font-size: 1.1em;
   }
 
   button:hover {
     background: white;
-    border: 2px solid var(--spanish-gray);
+    border: 2px solid $spanish-gray;
   }
 
   button:focus {
-    outline-color: var(--grizzly);
+    outline-color: $grizzly;
   }
 
   a {
-    color: var(--stormcloud);
+    color: $stormcloud;
     font-size: 0.9em;
     padding: 1% 0 1% 0;
     text-decoration: none;
   }
 
   a:hover {
-    color: var(--dark-medium-gray);
+    color: $dark-medium-gray;
   }
 
   .firstName {
