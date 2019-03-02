@@ -1,7 +1,7 @@
 import { put, call, takeEvery } from "redux-saga/effects";
 
 import { REGISTER_USER } from "../actions/types";
-
+import { registerService } from "../services/api";
 import {
   requestSuccess,
   requestFailed,
@@ -16,15 +16,9 @@ export default function* watchRegister() {
 function* registerWorker(action) {
   console.log(action.payload);
   try {
-    yield (call = Axios.post("http://127.0.0.1:3000/api/user/", action.payload)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(response => {
-        console.log(response.error);
-      }));
+    yield call(registerService, action.payload);
     yield put(requestSuccess());
   } catch (e) {
-    yield put(requestFailed());
+    console.log(e.message);
   }
 }

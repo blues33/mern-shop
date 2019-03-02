@@ -51,8 +51,10 @@
     "react/prefer-stateless-function": 1,
     "react/react-in-jsx-scope": 1,
     "react/jsx-wrap-multilines": 2,
-    "react/no-string-refs": 0
+    "react/no-string-refs": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
-  "plugins": ["import", "react"],
+  "plugins": ["import", "react", "react-hooks"],
   "env": { "amd": true }
 }

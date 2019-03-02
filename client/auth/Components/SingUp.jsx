@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withFormik, Form, Field } from "formik";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import { registerUser } from "../../actions/authActions";
 
@@ -112,7 +113,7 @@ const validatedSingUp = withFormik({
       phone_number: values.phone_number,
       password: values.password
     };
-    props.dispatch(registerUser(newUser));
+    props.registerUser(newUser);
 
     setSubmitting(false);
 
@@ -124,8 +125,21 @@ const maptStateToProps = state => ({
   user: state.userReducer
 });
 
-connect(maptStateToProps)(RegisterForm);
+const mapDispatchToProps = dispatch => ({
+  registerUser: user => {
+    dispatch(registerUser(user));
+  }
+});
 
-const SingUp = connect()(validatedSingUp);
+const SingUp = connect(
+  maptStateToProps,
+  mapDispatchToProps
+)(validatedSingUp);
+
+RegisterForm.propTypes = {
+  errors: PropTypes.object,
+  touched: PropTypes.object,
+  isSubmitting: PropTypes.bool
+};
 
 export default SingUp;
