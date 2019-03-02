@@ -1,87 +1,131 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-
+import { withFormik, Form, Field } from "formik";
+import * as yup from "yup";
 import { Link } from "react-router-dom";
 
-import Input from "../../Components/Input";
 import { registerUser } from "../../actions/authActions";
 
-const SingUp = props => {
-  document.bgColor = "#BFD9F2"; /* pale aqua */
-  document.title = "Shop | Регистрация";
-
-  const [state, setState] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    password: ""
+const RegisterForm = ({ errors, touched, isSubmitting }) => {
+  useEffect(() => {
+    document.bgColor = "#BFD9F2"; /* pale aqua */
+    document.title = "Shop | Регистрация";
   });
-
-  const handleOnChange = event => {
-    const { name, value } = event.target;
-    setState(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    const newUser = {
-      first_name: state.firstName,
-      last_name: state.lastName,
-      email: state.email,
-      phone_number: state.phone_number,
-      password: state.password
-    };
-
-    props.registerUser(newUser);
-  };
   return (
     <div className="wrapper">
       <div className="auth-form">
         <h1>Регистрация</h1>
         <hr />
-        <form onSubmit={handleSubmit}>
+        <Form>
           <label htmlFor="firstName" className="firstName">
             Имя
-            <Input name="firstName" onChange={e => handleOnChange(e)} />
+            <Field name="firstName" type="text" />
+            <div className="error-message">
+              {touched.firstName && errors.firstName && (
+                <p>{errors.firstName}</p>
+              )}
+            </div>
           </label>
 
           <label htmlFor="lastName" className="lastName">
             Фамилия
-            <Input name="lastName" onChange={e => handleOnChange(e)} />
+            <Field name="lastName" type="text" />
+            <div className="error-message">
+              {touched.lastName && errors.lastName && <p>{errors.lastName}</p>}
+            </div>
           </label>
           <label htmlFor="email">
             Почта
-            <Input name="email" onChange={e => handleOnChange(e)} />
+            <Field name="email" type="email" />
+            <div className="error-message">
+              {touched.email && errors.email && <p>{errors.email}</p>}
+            </div>
           </label>
           <label htmlFor="phone">
             Телефон
-            <Input name="phone_number" onChange={e => handleOnChange(e)} />
+            <Field name="phone_number" type="text" />
+            <div className="error-message">
+              {touched.phone_number && errors.phone_number && (
+                <p>{errors.phone_number}</p>
+              )}
+            </div>
           </label>
           <label htmlFor="password">
             Пароль
-            <Input name="password" onChange={e => handleOnChange(e)} />
+            <Field name="password" type="password" />
+            <div className="error-message">
+              {touched.password && errors.password && <p>{errors.password}</p>}
+            </div>
           </label>
 
-          <button type="submit">
+          <button disabled={isSubmitting} type="submit">
             <p>Зарегистрироваться</p>
           </button>
           <Link to="/">Уже есть аккаунт?</Link>
-        </form>
+        </Form>
       </div>
     </div>
   );
 };
 
+const validatedSingUp = withFormik({
+  mapPropsToValues() {
+    return {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone_number: "",
+      password: ""
+    };
+  },
+  validationSchema: yup.object().shape({
+    firstName: yup
+      .string()
+      .min(2, "Поле должно быть не менее чем 2 символа")
+      .max(16, "Поле должно быть менее 16 символов")
+      .required("Поле обязательное к заполнению"),
+    lastName: yup
+      .string()
+      .min(2, "Поле должно быть не менее чем 2 символа")
+      .max(16, "Поле должно быть менее 16 символов")
+      .required("Поле обязательное к заполнению"),
+    email: yup
+      .string()
+      .email("Не верный формат почты")
+      .required("Поле обязательное к заполнению"),
+    phone_number: yup
+      .string()
+      .min(6, "Поле должно быть не менее 6 символов")
+      .max(16, "Поле должно быть менее 16 символов")
+      .required("Поле обязательное к заполнению"),
+    password: yup
+      .string()
+      .min(8, "Поле должно быть не менее 8 символов")
+      .max(16, "Поле должно быть менее 16 символов")
+      .required("Поле обязательное к заполнению")
+  }),
+  handleSubmit(values, { props, resetForm, setErrors, setSubmitting }) {
+    const newUser = {
+      first_name: values.firstName,
+      last_name: values.lastName,
+      email: values.email,
+      phone_number: values.phone_number,
+      password: values.password
+    };
+    props.dispatch(registerUser(newUser));
+
+    setSubmitting(false);
+
+    resetForm();
+  }
+})(RegisterForm);
+
 const maptStateToProps = state => ({
   user: state.userReducer
 });
 
-export default connect(
-  maptStateToProps,
-  { registerUser }
-)(SingUp);
+connect(maptStateToProps)(RegisterForm);
+
+const SingUp = connect()(validatedSingUp);
+
+export default SingUp;

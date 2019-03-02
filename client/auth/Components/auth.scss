@@ -14,6 +14,7 @@ $stormcloud: #586862;
 $pale-aqua: #bfd9f2;
 $dark-medium-gray: #a9aba9;
 $grizzly: #7e5920;
+$platinum: #e2e6e5;
 
 .wrapper {
   display: flex;
@@ -88,6 +89,11 @@ $grizzly: #7e5920;
     outline-color: $grizzly;
   }
 
+  button:disabled,
+  button[disabled] {
+    background: #fffdfd;
+    color: $platinum;
+  }
   a {
     color: $stormcloud;
     font-size: 0.9em;
@@ -112,10 +118,11 @@ $grizzly: #7e5920;
     width: 39%;
   }
 
-  .error {
+  .error-message {
     color: #dd8b71;
     letter-spacing: 0.5px;
     text-align: center;
+    font-size: 14px;
   }
 }
 
