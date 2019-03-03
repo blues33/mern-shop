@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 import { registerUser } from "../../actions/authActions";
 
-const RegisterForm = ({ errors, touched, isSubmitting }) => {
+const RegisterForm = ({ errors, touched, isSubmitting, errorMessage }) => {
   useEffect(() => {
     document.bgColor = "#BFD9F2"; /* pale aqua */
     document.title = "Shop | Регистрация";
@@ -17,6 +17,7 @@ const RegisterForm = ({ errors, touched, isSubmitting }) => {
       <div className="auth-form">
         <h1>Регистрация</h1>
         <hr />
+        {errorMessage && <p>{errorMessage}</p>}
         <Form>
           <label htmlFor="firstName" className="firstName">
             Имя
@@ -122,7 +123,8 @@ const validatedSingUp = withFormik({
 })(RegisterForm);
 
 const maptStateToProps = state => ({
-  user: state.userReducer
+  user: state.userReducer,
+  errorMessage: state.errorReducer.errorMessage
 });
 
 const mapDispatchToProps = dispatch => ({

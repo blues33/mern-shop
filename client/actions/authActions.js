@@ -11,5 +11,5 @@ export const requestSuccess = () => ({
 
 export const requestFailed = error => ({
   type: REQUEST_FAILED,
-  payload: error
+  error
 });
