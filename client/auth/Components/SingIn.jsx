@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { withFormik, Form, Field } from "formik";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const SingIn = ({ errors, touched, isSubmitting }) => {
+import { loginUser } from "../../actions/authActions";
+
+const SingInForm = ({ errors, touched, isSubmitting, errorMessage }) => {
   useEffect(() => {
     document.bgColor = "#BFD9F2"; /* pale aqua */
     document.title = "Shop | Вход в систему";
@@ -14,6 +18,7 @@ const SingIn = ({ errors, touched, isSubmitting }) => {
       <div className="auth-form">
         <h1>Вход</h1>
         <hr />
+        {errorMessage && <p>{errorMessage}</p>}
         <Form>
           <label htmlFor="email">
             Почта
@@ -40,7 +45,7 @@ const SingIn = ({ errors, touched, isSubmitting }) => {
   );
 };
 
-const formikBag = withFormik({
+const validatedSingIn = withFormik({
   mapPropsToValues() {
     return {
       email: "",
@@ -58,18 +63,26 @@ const formikBag = withFormik({
       .max(16, "Пароль должен быть менее  16 символов")
       .required("Поле обязательное к заполнению")
   }),
-  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+  handleSubmit(values, { props, resetForm, setErrors, setSubmitting }) {
     // how i can handle errors and set it when get response from server, somthing like bad request or etc
-    setTimeout(() => {
-      if (values.email === "a@gmail.com") {
-        setErrors({ email: "Данная почта уже используется" });
-      } else {
-        console.log(values);
-        resetForm();
-      }
-      setSubmitting(false);
-    }, 2000);
+    props.loginUser(values);
+    setSubmitting(false);
   }
-})(SingIn);
+})(SingInForm);
 
-export default formikBag;
+const maptStateToProps = state => ({
+  errorMessage: state.errorReducer.errorMessage
+});
+
+const mapDispatchToProps = dispatch => ({
+  loginUser: user => {
+    dispatch(loginUser(user));
+  }
+});
+
+const SingIn = connect(
+  maptStateToProps,
+  mapDispatchToProps
+)(validatedSingIn);
+
+export default SingIn;

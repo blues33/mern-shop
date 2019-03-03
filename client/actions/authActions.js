@@ -1,7 +1,17 @@
-import { REGISTER_USER, REQUEST_SUCCESS, REQUEST_FAILED } from "./types";
+import {
+  REGISTER_USER,
+  REQUEST_SUCCESS,
+  REQUEST_FAILED,
+  LOGIN_REQUEST
+} from "./types";
 
 export const registerUser = user => ({
   type: REGISTER_USER,
+  payload: user
+});
+
+export const loginUser = user => ({
+  type: LOGIN_REQUEST,
   payload: user
 });
 

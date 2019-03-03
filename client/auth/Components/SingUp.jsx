@@ -123,7 +123,6 @@ const validatedSingUp = withFormik({
 })(RegisterForm);
 
 const maptStateToProps = state => ({
-  user: state.userReducer,
   errorMessage: state.errorReducer.errorMessage
 });
 
